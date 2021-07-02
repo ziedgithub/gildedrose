@@ -39,10 +39,7 @@ fun Item.updateQuality() {
         return
     }
 
-    if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert") {
-        decreaseQuality()
-
-    } else {
+    if (name == "Aged Brie" || name == "Backstage passes to a TAFKAL80ETC concert") {
         increaseQuality()
 
         if (name == "Backstage passes to a TAFKAL80ETC concert") {
@@ -54,6 +51,9 @@ fun Item.updateQuality() {
                 increaseQuality()
             }
         }
+    }
+    else {
+        decreaseQuality()
     }
 
     if (sellIn < 0) {
