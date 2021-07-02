@@ -16,6 +16,33 @@ internal class GildedRoseTest {
     }
 
     @Test
+    fun `allCases_sellInDecrease`() {
+        val items = arrayOf<Item>(
+            Item("foo", 5, 10),
+            Item("Conjured Manu's mighty hammer", 5, 10),
+            Item("Aged Brie", 5,10),
+            Item("Backstage passes to a TAFKAL80ETC concert", 5, 10)
+        )
+
+
+        updateQualityByOneDay(items)
+
+        items.forEach{
+            assertEquals(it.sellIn, 4, "${it.name}: sellIn is not right")
+        }
+    }
+
+    @Test
+    fun `sulfuras items never decay`() {
+        val items = arrayOf(Item("Sulfuras, Hand of Ragnaros", 5, 10))
+        updateQualityByOneDay(items)
+
+        assertEquals(items[0].sellIn,5)
+    }
+
+
+
+    @Test
     fun `regularCase_qualityDecaysAfterEachDay`() {
         val items = arrayOf<Item>(Item("foo", 5, 10))
 
@@ -45,7 +72,7 @@ internal class GildedRoseTest {
     fun `regularCase_qualityCannotBeMoreThan50`() {
         val items = arrayOf<Item>(Item("foo", 0, 50))
         updateQualityByOneDay(items)
-        assertTrue { items[0].quality <= 50}
+        assertTrue { items[0].quality <= 50 }
     }
 
     @Test
@@ -128,7 +155,6 @@ internal class GildedRoseTest {
         app.updateQuality()
         assertTrue { items[0].quality == 0 }
     }
-
 
 
 }

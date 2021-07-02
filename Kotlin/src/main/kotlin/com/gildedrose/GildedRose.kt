@@ -7,6 +7,7 @@ class GildedRose(var items: Array<Item>) {
         for (i in items.indices) {
 
             if (items[i].name.contains("Conjured")) {
+                items[i].sellIn -= 1
                 val conjured = Items.Conjured(items[i])
                 conjured.updateQuality()
                 continue
