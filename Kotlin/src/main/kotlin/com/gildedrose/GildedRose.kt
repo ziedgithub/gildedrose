@@ -5,9 +5,11 @@ class GildedRose(var items: Array<Item>) {
 
     fun updateQuality() {
         for (item in items) {
+            if (item.name != "Sulfuras, Hand of Ragnaros") {
+                item.decay()
+            }
 
             if (item.name.contains("Conjured")) {
-                item.decay()
                 val conjured = Items.Conjured(item)
                 conjured.updateQuality()
                 continue
@@ -39,9 +41,7 @@ class GildedRose(var items: Array<Item>) {
                 }
             }
 
-            if (item.name != "Sulfuras, Hand of Ragnaros") {
-                item.decay()
-            }
+
 
             if (item.sellIn < 0) {
                 if (item.name != "Aged Brie") {
