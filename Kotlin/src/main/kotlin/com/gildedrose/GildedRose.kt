@@ -31,13 +31,15 @@ fun Item.decay() {
 }
 
 fun Item.updateQuality() {
+    if (name == "Sulfuras, Hand of Ragnaros") return
+
     if (name.contains("Conjured")) {
         val conjured = Items.Conjured(this)
         conjured.updateQuality()
         return
     }
 
-    if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert" && name != "Sulfuras, Hand of Ragnaros") {
+    if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert") {
         decreaseQuality()
 
     } else {
@@ -55,13 +57,12 @@ fun Item.updateQuality() {
     }
 
     if (sellIn < 0) {
-        if (name == "Sulfuras, Hand of Ragnaros") return
+
 
         if (name == "Backstage passes to a TAFKAL80ETC concert") {
             quality = 0
         }
         if (name != "Aged Brie") {
-
             decreaseQuality()
         } else {
             increaseQuality()
