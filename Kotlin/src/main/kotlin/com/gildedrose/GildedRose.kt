@@ -7,52 +7,9 @@ class GildedRose(var items: Array<Item>) {
         for (item in items) {
             item.decay()
 
-            updateQuality(item)
+            item.updateQuality()
         }
     }
-
-    private fun updateQuality(item: Item) {
-        if (item.name.contains("Conjured")) {
-            val conjured = Items.Conjured(item)
-            conjured.updateQuality()
-            return
-        }
-
-        if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") {
-            if (item.name != "Sulfuras, Hand of Ragnaros") {
-                item.decreaseQuality()
-            }
-
-        } else {
-            item.increaseQuality()
-
-            if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
-                if (item.sellIn < 11) {
-                    item.increaseQuality()
-                }
-
-                if (item.sellIn < 6) {
-                    item.increaseQuality()
-                }
-            }
-        }
-
-        if (item.sellIn < 0) {
-            if (item.name != "Aged Brie") {
-                if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
-                    if (item.name != "Sulfuras, Hand of Ragnaros") {
-                        item.decreaseQuality()
-                    }
-                } else {
-                    item.quality = 0
-                }
-            } else {
-                item.increaseQuality()
-            }
-        }
-    }
-
-
 }
 
 fun Item.increaseQuality() {
@@ -70,5 +27,46 @@ fun Item.decreaseQuality() {
 fun Item.decay() {
     if (name != "Sulfuras, Hand of Ragnaros") {
         sellIn--
+    }
+}
+
+fun Item.updateQuality() {
+    if (name.contains("Conjured")) {
+        val conjured = Items.Conjured(this)
+        conjured.updateQuality()
+        return
+    }
+
+    if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert") {
+        if (name != "Sulfuras, Hand of Ragnaros") {
+            decreaseQuality()
+        }
+
+    } else {
+        increaseQuality()
+
+        if (name == "Backstage passes to a TAFKAL80ETC concert") {
+            if (sellIn < 11) {
+                increaseQuality()
+            }
+
+            if (sellIn < 6) {
+                increaseQuality()
+            }
+        }
+    }
+
+    if (sellIn < 0) {
+        if (name != "Aged Brie") {
+            if (name != "Backstage passes to a TAFKAL80ETC concert") {
+                if (name != "Sulfuras, Hand of Ragnaros") {
+                    decreaseQuality()
+                }
+            } else {
+                quality = 0
+            }
+        } else {
+            increaseQuality()
+        }
     }
 }
