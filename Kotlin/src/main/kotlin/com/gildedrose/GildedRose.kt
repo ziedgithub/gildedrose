@@ -39,26 +39,22 @@ fun Item.updateQuality() {
         return
     }
 
-    if (name == "Aged Brie" || name == "Backstage passes to a TAFKAL80ETC concert") {
+    if (name == "Aged Brie") {
         increaseQuality()
-
-        if (name == "Backstage passes to a TAFKAL80ETC concert") {
-            if (sellIn < 11) {
-                increaseQuality()
-            }
-
-            if (sellIn < 6) {
-                increaseQuality()
-            }
+    } else if (name == "Backstage passes to a TAFKAL80ETC concert") {
+        increaseQuality()
+        if (sellIn < 11) {
+            increaseQuality()
         }
-    }
-    else {
+
+        if (sellIn < 6) {
+            increaseQuality()
+        }
+    } else {
         decreaseQuality()
     }
 
     if (sellIn < 0) {
-
-
         if (name == "Backstage passes to a TAFKAL80ETC concert") {
             quality = 0
         }
