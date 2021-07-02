@@ -21,18 +21,18 @@ class GildedRose(var items: Array<Item>) {
                 }
             } else {
                 if (item.quality < 50) {
-                    item.quality = item.quality + 1
+                    item.increaseQuality()
 
                     if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
                         if (item.sellIn < 11) {
                             if (item.quality < 50) {
-                                item.quality = item.quality + 1
+                                item.increaseQuality()
                             }
                         }
 
                         if (item.sellIn < 6) {
                             if (item.quality < 50) {
-                                item.quality = item.quality + 1
+                                item.increaseQuality()
                             }
                         }
                     }
@@ -56,12 +56,17 @@ class GildedRose(var items: Array<Item>) {
                     }
                 } else {
                     if (item.quality < 50) {
-                        item.quality = item.quality + 1
+                        item.increaseQuality()
                     }
                 }
             }
         }
     }
 
+
+
 }
 
+fun Item.increaseQuality() {
+    quality += 1
+}
