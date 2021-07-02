@@ -37,10 +37,8 @@ fun Item.updateQuality() {
         return
     }
 
-    if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert") {
-        if (name != "Sulfuras, Hand of Ragnaros") {
-            decreaseQuality()
-        }
+    if (name != "Aged Brie" && name != "Backstage passes to a TAFKAL80ETC concert" && name != "Sulfuras, Hand of Ragnaros") {
+        decreaseQuality()
 
     } else {
         increaseQuality()
@@ -57,14 +55,13 @@ fun Item.updateQuality() {
     }
 
     if (sellIn < 0) {
+        if (name == "Backstage passes to a TAFKAL80ETC concert") {
+            quality = 0
+        }
         if (name != "Aged Brie") {
-            if (name != "Backstage passes to a TAFKAL80ETC concert") {
                 if (name != "Sulfuras, Hand of Ragnaros") {
                     decreaseQuality()
                 }
-            } else {
-                quality = 0
-            }
         } else {
             increaseQuality()
         }
