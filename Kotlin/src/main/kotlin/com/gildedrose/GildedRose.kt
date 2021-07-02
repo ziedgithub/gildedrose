@@ -53,14 +53,15 @@ fun Item.updateQuality() {
         if (sellIn < 6) {
             increaseQuality()
         }
+
+        if (sellIn < 0) {
+            quality = 0
+        }
     } else {
         decreaseQuality()
     }
 
     if (sellIn < 0) {
-        if (name == "Backstage passes to a TAFKAL80ETC concert") {
-            quality = 0
-        }
         if (name != "Aged Brie") {
             decreaseQuality()
         }
