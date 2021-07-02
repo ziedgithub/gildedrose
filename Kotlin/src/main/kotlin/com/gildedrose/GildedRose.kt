@@ -55,13 +55,14 @@ fun Item.updateQuality() {
     }
 
     if (sellIn < 0) {
+        if (name == "Sulfuras, Hand of Ragnaros") return
+
         if (name == "Backstage passes to a TAFKAL80ETC concert") {
             quality = 0
         }
         if (name != "Aged Brie") {
-                if (name != "Sulfuras, Hand of Ragnaros") {
-                    decreaseQuality()
-                }
+
+            decreaseQuality()
         } else {
             increaseQuality()
         }
