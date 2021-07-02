@@ -5,9 +5,7 @@ class GildedRose(var items: Array<Item>) {
 
     fun updateQuality() {
         for (item in items) {
-            if (item.name != "Sulfuras, Hand of Ragnaros") {
-                item.decay()
-            }
+            item.decay()
 
             if (item.name.contains("Conjured")) {
                 val conjured = Items.Conjured(item)
@@ -27,21 +25,15 @@ class GildedRose(var items: Array<Item>) {
 
                     if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
                         if (item.sellIn < 11) {
-                            if (item.quality < 50) {
-                                item.increaseQuality()
-                            }
+                            item.increaseQuality()
                         }
 
                         if (item.sellIn < 6) {
-                            if (item.quality < 50) {
-                                item.increaseQuality()
-                            }
+                            item.increaseQuality()
                         }
                     }
                 }
             }
-
-
 
             if (item.sellIn < 0) {
                 if (item.name != "Aged Brie") {
@@ -55,25 +47,27 @@ class GildedRose(var items: Array<Item>) {
                         item.quality = 0
                     }
                 } else {
-                    if (item.quality < 50) {
-                        item.increaseQuality()
-                    }
+                    item.increaseQuality()
                 }
             }
         }
     }
 
 
-
 }
 
 fun Item.increaseQuality() {
-    quality++
+    if (quality < 50) {
+        quality++
+    }
 }
+
 fun Item.decreaseQuality() {
     quality--
 }
 
-fun Item.decay(){
-    sellIn--
+fun Item.decay() {
+    if (name != "Sulfuras, Hand of Ragnaros") {
+        sellIn--
+    }
 }
