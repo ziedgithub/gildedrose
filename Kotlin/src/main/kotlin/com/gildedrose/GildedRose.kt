@@ -59,11 +59,10 @@ fun Item.updateQuality() {
         }
     } else {
         decreaseQuality()
-    }
-
-    if (sellIn < 0) {
-        if (name != "Aged Brie") {
+        if (sellIn < 0) {
             decreaseQuality()
         }
     }
+
+
 }
