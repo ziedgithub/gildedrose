@@ -1,9 +1,17 @@
 package com.gildedrose
 
 class GildedRose(var items: Array<Item>) {
+    val itemList: MutableList<Items> = mutableListOf()
 
     fun updateQuality() {
         for (i in items.indices) {
+
+            if (items[i].name.contains("Conjured")) {
+                val conjured = Items.Conjured(items[i])
+                conjured.updateQuality()
+                continue
+            }
+
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
                 if (items[i].quality > 0) {
                     if (items[i].name != "Sulfuras, Hand of Ragnaros") {
