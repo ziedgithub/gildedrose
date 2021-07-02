@@ -44,7 +44,9 @@ fun Item.updateQuality() {
         if (sellIn < 0) {
             increaseQuality()
         }
-    } else if (name == "Backstage passes to a TAFKAL80ETC concert") {
+        return
+    }
+    if (name == "Backstage passes to a TAFKAL80ETC concert") {
         increaseQuality()
         if (sellIn < 11) {
             increaseQuality()
@@ -57,11 +59,12 @@ fun Item.updateQuality() {
         if (sellIn < 0) {
             quality = 0
         }
-    } else {
+        return
+    }
+
+    decreaseQuality()
+    if (sellIn < 0) {
         decreaseQuality()
-        if (sellIn < 0) {
-            decreaseQuality()
-        }
     }
 
 
