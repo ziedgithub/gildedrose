@@ -41,6 +41,9 @@ fun Item.updateQuality() {
 
     if (name == "Aged Brie") {
         increaseQuality()
+        if (sellIn < 0) {
+            increaseQuality()
+        }
     } else if (name == "Backstage passes to a TAFKAL80ETC concert") {
         increaseQuality()
         if (sellIn < 11) {
@@ -60,8 +63,6 @@ fun Item.updateQuality() {
         }
         if (name != "Aged Brie") {
             decreaseQuality()
-        } else {
-            increaseQuality()
         }
     }
 }
